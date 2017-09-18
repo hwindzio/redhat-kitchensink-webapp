@@ -1,0 +1,42 @@
+{
+    "title" : "Kitchen Sink",
+    "sections" : [
+    {
+        "title" : "Creation new project from sample",
+        "text" : "To create simple Kitchen sink project inside Eclipse CHE you can click \"Workspace\" ->  \"Create Project...\" . When IDE open \"Create new Project\" wizard, select, please, \"Kitchen sink\" from the list of the \"Samples\", type project name and click \"Ok\" button. IDE will create new Spring project for you and you will see it in the \"Project Explorer\" widget."
+    },
+    {
+        "title" : "Run KitchenSink with help JBOSS",
+        "text" : "To run Kitchen sink application you need build it. Kitchen sink project template based on maven build tool. IDE provides with project template list of commands <bold>to build<bold> and run this application. This command you can see in the bottom \"Comman widget\". So simple select little triangle under the run command button, and select from commands list \"$your_project_name: Build, deploy and start JBOSS\". In the process panel you will see command output and preview URL \"preview\". Click on the preview url and IDE will open for you new browser tab with launched on the JBOSS KitchenSink web application. ", 
+        "action" : {
+            "label" : "Build, deploy and start",
+            "actionId" : "run-command",
+            "parameters": {
+                "name" : "KitchenSink: Build, deploy and start JBoss"
+            }
+        }
+    },
+    {
+        "text" : "You can navigate in the source code with help Project Explorer. It located in the left Panel with label \"Projects\"",
+        "action" : {
+            "label" : "Reveal tree to the node src/main/java",
+            "actionId" : "expand-path",
+            "parameters": {
+                "path" : "src/main/resources/import.sql"
+            }
+        }
+    },
+    {
+         "title" : "Open file",
+        "text" : " To open some file", 
+        "action" : {
+            "label" : "Open some file",
+            "actionId" : "open-file",
+            "parameters": {
+                "file" : "pom.xml",
+                "line" : 216
+            }
+        }
+    }
+    ]
+}
