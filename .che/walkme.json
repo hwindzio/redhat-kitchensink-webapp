@@ -1,0 +1,207 @@
+{
+  "title": "Kitchensink quickstart",
+  "sections": [
+    {
+      "title": "__Introduction__",
+      "paragraphs": [
+        {
+          "text": "<br>This quickstart shows off all the new features of Java EE 7, and makes a great starting point for your project.<br><br><b>Bean Validation 1.1</b><br><br> Bean Validation is an update specification for Java EE 7, inspired by Hibernate Validator. It allows application developers to specify constraints once (often in their domain model), and have them applied in all layers of the application, protecting data and giving useful feedback to users. <br><br> <b>JAX-RS: The Java API for RESTful Web Services</b><br><br>JAX-RS is an update specification for Java EE 7. It allows application developers to easily expose Java services as RESTful web services.<br><br>"
+        }
+      ]
+    },
+    {
+      "title": "__The kitchensink example in depth__",
+      "paragraphs": [
+        {
+          "text": "<br>The kitchensink application shows off a number of Java EE technologies such as CDI, JSF, EJB, JTA, JAX-RS and Arquillian. It does this by providing a member registration database, available via JSF and JAX-RS.<br/><br/>As usual, let’s start by looking at the necessary deployment descriptors. By now, we're very used to seeing <b>beans.xml</b> and <b>faces-config.xml</b> in <b>WEB-INF/</b>(which can be found in the <b>src/main/webapp</b> directory of the example). Notice that, once again, we don’t need a web.xml. There are two configuration files in <b>WEB-INF/classes/META-INF</b> (which can be found in the <b>src/main/resources</b> directory of the example) — <b>persistence.xml</b>, which sets up JPA, and <b>import.sql</b> which Hibernate, the JPA provider in WildFly, will use to load the initial users into the application when the application starts. We discussed both of these files in detail in The <b>greeter example in depth</b>, and these are largely the same.<br><br>"
+        }
+      ]
+    },
+    {
+      "title": "__default.xhtml__",
+      "paragraphs": [
+        {
+          "text": "<br>Next, let’s take a look at the JSF view the user sees. As usual, we use a template to provide the sidebar and footer. This one lives in <b>WEB-INF/templates/default.xhtml</b>: <br><br> We have a common &LThead&GT element, where we define styles and more.",
+          "action": {
+            "label": "Open default.xhtml at line 22",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/webapp/WEB-INF/templates/default.xhtml",
+              "line": 22
+            }
+          }
+        },
+        {
+          "text": "<br>The content is inserted here, and defined by views using this template.",
+          "action": {
+            "label": "Open default.xhtml at line 32",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/webapp/WEB-INF/templates/default.xhtml",
+              "line": 32
+            }
+          }
+        },
+        {
+          "title": "__index.xhtml__",
+          "paragraphs": [
+            {
+              "text": "<br>This application exposes REST endpoints for each registered member. The application helpfully displays the URL to the REST endpoint on this page. ",
+              "action": {
+                "label": "Open index.xhtml at line 86",
+                "actionId": "open-file",
+                "parameters": {
+                  "file": "src/main/webapp/index.xhtml",
+                  "line": 86
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "__Member.java__",
+      "paragraphs": [
+        {
+          "text": "<br>@Digits, @NotNull and @Size are further examples of constraints. ",
+          "action": {
+            "label": "Open Member.java at line 56",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/java/org/jboss/as/quickstarts/kitchensink/model/Member.java",
+              "line": 56
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "__MemberRepository.java__",
+      "paragraphs": [
+        {
+          "text": "<br>The criteria api can also be used to load lists of entities .",
+          "action": {
+            "label": "Open MemberRepository.java at line 51",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/java/org/jboss/as/quickstarts/kitchensink/data/MemberRepository.java",
+              "line": 51
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "__MemberListProducer.java__",
+      "paragraphs": [
+        {
+          "text": "<br>The observer method is notified whenever a member is created, removed, or updated. This allows us to refresh the list of members whenever they are needed. This is a good approach as it allows us to cache the list of members, but keep it up to date at the same time.",
+          "action": {
+            "label": "Open MemberListProducer.java at line 46",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/java/org/jboss/as/quickstarts/kitchensink/data/MemberListProducer.java",
+              "line": 46
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "__MemberRegistration.java__",
+      "paragraphs": [
+        {
+          "text": "An event is sent every time a member is updated. This allows other pieces of code (in this quickstart the member list is refreshed) to react to changes in the member list without any coupling to this class. ",
+          "action": {
+            "label": "Open MemberRegistration.java at line 43",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/java/org/jboss/as/quickstarts/kitchensink/service/MemberRegistration.java",
+              "line": 43
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "__Resources.java__",
+      "paragraphs": [
+        {
+          "text": "<br>If you want to define your own datasource, take a look at the Administration Guide for WildFly here: https://docs.jboss.org/author/display/WFLY8/Admin+Guide#AdminGuide-DatasourceDefinitions/",
+          "action": {
+            "label": "Open MemberRegistration.java at line 52",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/java/org/jboss/as/quickstarts/kitchensink/util/Resources.java",
+              "line": 52
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "__MemberController.java__",
+      "paragraphs": [
+        {
+          "text": "<br>Finally, we replace the newMember with a new object, thus blanking out the data the user has added so far. This works as the producer field is dependent scoped.",
+          "action": {
+            "label": "Open MemberController.java at line 57",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/java/org/jboss/as/quickstarts/kitchensink/controller/MemberController.java",
+              "line": 57
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "__JAX-RS__",
+      "paragraphs": [
+        {
+          "text": "<br><br>Before we wrap up our tour of the kitchensink example application, let’s take a look at how the JAX-RS endpoints are created. Firstly, {<b>JaxRSActivator</b>}}, which extends <b>Application</b> and is annotated with <b>@ApplicationPath</b>, is the Java EE 6 <b>no XML</b> approach to activating JAX-RS.<br><br>JaxRsActivator.java",
+          "action": {
+            "label": "Open JaxRsActivator.java at line 30",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/java/org/jboss/as/quickstarts/kitchensink/rest/JaxRsActivator.java",
+              "line": 30
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "__MemberResourceRESTService.java__",
+      "paragraphs": [
+        {
+          "text": "<br>We then handle any remaining issues with validating the object, which are raised when the object is persisted.",
+          "action": {
+            "label": "Open MemberResourceRESTService.java at line 104",
+            "actionId": "open-file",
+            "parameters": {
+              "file": "src/main/java/org/jboss/as/quickstarts/kitchensink/rest/MemberResourceRESTService.java",
+              "line": 104
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "__Run and deploy the application__",
+      "paragraphs": [
+        {
+          "text": "<br>Click on the button below to build, deploy and restart JBoss to see any changes you’ve made take effect.",
+          "action": {
+            "label": "Click to build, deploy and restart JBoss",
+            "actionId": "run-command",
+            "parameters": {
+              "name": "Kitchen_sink: Stop, build, deploy and start JBoss"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
